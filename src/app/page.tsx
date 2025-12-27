@@ -51,7 +51,7 @@ const SHOTS: Shot[] = [
     key: "scoutprofile",
     title: "Scout profiles",
     subtitle: "View Scout Coverage, Focus, and Contact Details.",
-    src: "/screens/scoutprofile.png",
+    src: "/screens/scoutprofile1.png",
   },
 ];
 
