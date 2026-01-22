@@ -15,44 +15,44 @@ const SHOTS: Shot[] = [
     key: "home",
     title: "Home",
     subtitle: "Instant Teamsheet Scanning and Match Creation.",
-    src: "/screens/home.png",
+    src: "/screens/homeyellow.png",
   },
   {
     key: "fixturelist",
     title: "Fixtures",
     subtitle: "Track Upcoming Matches and Scan Status by Competition.",
-    src: "/screens/fixturelist.png",
+    src: "/screens/fixturelistyellow.png",
   },
   {
     key: "scanpage",
     title: "Scan teamsheet",
     subtitle: "Upload a Teamsheet Image Directly from a Matchday.",
-    src: "/screens/scanpage.png",
+    src: "/screens/scanpageyellow.png",
   },
   {
     key: "playerscan",
     title: "Player extraction",
     subtitle: "Auto-extract Players from the Teamsheet Scan.",
-    src: "/screens/playerscan.png",
+    src: "/screens/playerscanyellow.png",
   },
   {
     key: "playerbreakdown",
     title: "Player reports",
     subtitle: "Quick Ratings, Notes, and MOTM Tagging.",
-    src: "/screens/playerbreakdown.png",
+    src: "/screens/playerbreakdownyellow.png",
   },
   {
     key: "workspace",
     title: "Workspace",
     subtitle: "Shared Club Workspace with Recent Reports.",
-    src: "/screens/workspace.png",
+    src: "/screens/workspaceyellow.png",
   },
-  {
-    key: "scoutprofile",
-    title: "Scout profiles",
-    subtitle: "View Scout Coverage, Focus, and Contact Details.",
-    src: "/screens/scoutprofile1.png",
-  },
+  // {
+  //   key: "scoutprofile",
+  //   title: "Scout profiles",
+  //   subtitle: "View Scout Coverage, Focus, and Contact Details.",
+  //   src: "/screens/scoutprofile1.png",
+  // },
 ];
 
 function clampIndex(i: number, len: number) {
