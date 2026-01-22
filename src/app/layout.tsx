@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Scoutable",
   description: "Tools for modern scouts",
   icons: {
-    icon: "/screens/scoutablelogonew.png", // or "/icon.png" if you prefer
+    icon: "./favicon.ico", // or "/icon.png" if you prefer
   },
 };
 
