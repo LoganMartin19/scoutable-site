@@ -134,7 +134,7 @@ export default function Page() {
           <div className="flex items-center gap-3">
             <div className="relative h-9 w-9 overflow-hidden rounded-xl bg-black">
               <Image
-                src="/screens/fulllogo.png"
+                src="/screens/scoutablelogonew.png"
                 alt="Scoutable logo"
                 fill
                 sizes="36px"
@@ -238,7 +238,7 @@ export default function Page() {
 
                 <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-[var(--line)] bg-black">
                   <Image
-                    src="/screens/fulllogo.png"
+                    src="/screens/scoutablelogonew.png"
                     alt="Scoutable logo"
                     fill
                     sizes="48px"
