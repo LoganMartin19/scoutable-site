@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
+/* Scoutable (Black/Yellow) theme tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;     /* near-black */
+  --foreground: #f4f4f5;     /* off-white text */
+
+  --panel: #111111;          /* cards / surfaces */
+  --border: #27272a;         /* subtle borders */
+  --muted: #a1a1aa;          /* secondary text */
+
+  --brand: #f7c600;          /* yellow */
+  --brand-2: #ffd84d;        /* lighter yellow for hover */
 }
 
+/* Tailwind v4 token mapping (keeps your setup working) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-panel: var(--panel);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Force dark look across the site (instead of only "prefers dark") */
+html,
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
 }

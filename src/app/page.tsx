@@ -124,7 +124,7 @@ export default function Page() {
           <div className="flex items-center gap-3">
             <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-sm">
               <Image
-                src="/screens/fulllogo.png"
+                src="/screens/scoutablelogo.png"
                 alt="Scoutable logo"
                 fill
                 sizes="36px"
