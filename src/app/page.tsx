@@ -62,48 +62,34 @@ function clampIndex(i: number, len: number) {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm backdrop-blur">
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-panel/70 px-3 py-1 text-xs font-medium text-muted shadow-sm backdrop-blur">
       {children}
     </span>
   );
 }
 
-function Card({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
+function Card({ title, text }: { title: string; text: string }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-      <div className="text-sm font-semibold text-zinc-900">{title}</div>
-      <div className="mt-1 text-sm leading-6 text-zinc-600">{text}</div>
+    <div className="rounded-2xl border border-border bg-panel p-5 shadow-sm">
+      <div className="text-sm font-semibold text-foreground">{title}</div>
+      <div className="mt-1 text-sm leading-6 text-muted">{text}</div>
     </div>
   );
 }
 
-function FAQItem({
-  q,
-  a,
-}: {
-  q: string;
-  a: string;
-}) {
+function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <button
       type="button"
       onClick={() => setOpen((v) => !v)}
-      className="w-full rounded-2xl border border-zinc-200 bg-white p-5 text-left shadow-sm transition hover:bg-zinc-50"
+      className="w-full rounded-2xl border border-border bg-panel p-5 text-left shadow-sm transition hover:bg-[#161616]"
     >
       <div className="flex items-start justify-between gap-4">
-        <div className="text-sm font-semibold text-zinc-900">{q}</div>
-        <div className="mt-0.5 text-zinc-400">{open ? "–" : "+"}</div>
+        <div className="text-sm font-semibold text-foreground">{q}</div>
+        <div className="mt-0.5 text-muted">{open ? "–" : "+"}</div>
       </div>
-      {open && (
-        <div className="mt-2 text-sm leading-6 text-zinc-600">{a}</div>
-      )}
+      {open && <div className="mt-2 text-sm leading-6 text-muted">{a}</div>}
     </button>
   );
 }
@@ -117,14 +103,14 @@ export default function Page() {
   const prev = () => setActive((i) => clampIndex(i - 1, shots.length));
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(1200px_600px_at_50%_0%,rgba(59,130,246,0.18),transparent_55%),radial-gradient(800px_500px_at_20%_20%,rgba(99,102,241,0.12),transparent_60%),linear-gradient(to_bottom,#f6f7fb,white)] text-zinc-900">
+    <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
-      <header className="sticky top-0 z-20 border-b border-zinc-200/60 bg-white/60 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <div className="flex items-center gap-3">
-            <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-sm">
+            <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-border bg-panel shadow-sm">
               <Image
-                src="/screens/scoutablelogo.png"
+                src="/screens/scoutablelogonew.png"
                 alt="Scoutable logo"
                 fill
                 sizes="36px"
@@ -134,21 +120,29 @@ export default function Page() {
             </div>
 
             <div className="leading-tight">
-              <div className="text-sm font-semibold">Scoutable</div>
-              <div className="text-xs text-zinc-500">Tools for modern scouts</div>
+              <div className="text-sm font-semibold text-foreground">Scoutable</div>
+              <div className="text-xs text-muted">Tools for modern scouts</div>
             </div>
           </div>
 
-          <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
-            <a href="#features" className="hover:text-zinc-900">Features</a>
-            <a href="#screens" className="hover:text-zinc-900">Screens</a>
-            <a href="#faq" className="hover:text-zinc-900">FAQ</a>
-            <a href="#contact" className="hover:text-zinc-900">Contact</a>
+          <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
+            <a href="#features" className="hover:text-foreground">
+              Features
+            </a>
+            <a href="#screens" className="hover:text-foreground">
+              Screens
+            </a>
+            <a href="#faq" className="hover:text-foreground">
+              FAQ
+            </a>
+            <a href="#contact" className="hover:text-foreground">
+              Contact
+            </a>
           </nav>
 
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            className="inline-flex items-center justify-center rounded-full bg-brand px-4 py-2 text-sm font-extrabold text-black shadow-sm transition hover:bg-brand-2"
           >
             Get in touch
           </a>
@@ -160,62 +154,63 @@ export default function Page() {
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
             <Pill>
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
               Now testing in pilot mode
             </Pill>
 
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight text-zinc-900 md:text-5xl">
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
               Instant Team-sheet Scanning —{" "}
-              <span className="text-blue-600">Match Logs & Player Reports</span>{" "}
-              in minutes.
+              <span className="text-brand">Match Logs & Player Reports</span> in
+              minutes.
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-7 text-zinc-700 md:text-lg">
-              Scoutable helps clubs capture teamsheets, generate match logs, and file quick player reports
-              with ratings, notes, and MOTM — built for real matchday workflows.
+            <p className="mt-5 max-w-xl text-base leading-7 text-muted md:text-lg">
+              Scoutable helps clubs capture teamsheets, generate match logs, and file
+              quick player reports with ratings, notes, and MOTM — built for real
+              matchday workflows.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#screens"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-brand px-6 text-sm font-extrabold text-black shadow-sm transition hover:bg-brand-2"
               >
                 See the app screens
               </a>
               <a
                 href="#contact"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-panel px-6 text-sm font-semibold text-foreground shadow-sm transition hover:bg-[#161616]"
               >
                 Book a pilot demo
               </a>
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-                <div className="text-sm font-semibold text-zinc-900">2–5 min</div>
-                <div className="mt-1 text-xs leading-5 text-zinc-600">from photo to log</div>
+              <div className="rounded-2xl border border-border bg-panel p-4 shadow-sm">
+                <div className="text-sm font-semibold text-foreground">2–5 min</div>
+                <div className="mt-1 text-xs leading-5 text-muted">from photo to log</div>
               </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-                <div className="text-sm font-semibold text-zinc-900">Fast</div>
-                <div className="mt-1 text-xs leading-5 text-zinc-600">ratings & notes</div>
+              <div className="rounded-2xl border border-border bg-panel p-4 shadow-sm">
+                <div className="text-sm font-semibold text-foreground">Fast</div>
+                <div className="mt-1 text-xs leading-5 text-muted">ratings & notes</div>
               </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-                <div className="text-sm font-semibold text-zinc-900">Shared</div>
-                <div className="mt-1 text-xs leading-5 text-zinc-600">club workspace</div>
+              <div className="rounded-2xl border border-border bg-panel p-4 shadow-sm">
+                <div className="text-sm font-semibold text-foreground">Shared</div>
+                <div className="mt-1 text-xs leading-5 text-muted">club workspace</div>
               </div>
             </div>
           </div>
 
           <div className="md:justify-self-end">
-            <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-              <div className="text-xs font-medium text-zinc-500">
+            <div className="rounded-3xl border border-border bg-panel p-4 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+              <div className="text-xs font-medium text-muted">
                 Example output (pilot build)
               </div>
 
               {/* PHONE FRAME */}
-              <div className="mt-3 overflow-hidden rounded-2xl bg-zinc-50 p-3">
+              <div className="mt-3 overflow-hidden rounded-2xl bg-[#0f0f0f] p-3">
                 <div className="mx-auto w-full max-w-[320px]">
-                  <div className="relative mx-auto aspect-[9/19.5] w-full overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-sm">
+                  <div className="relative mx-auto aspect-[9/19.5] w-full overflow-hidden rounded-[28px] border border-border bg-black shadow-sm">
                     <Image
                       src={current.src}
                       alt={current.title}
@@ -227,7 +222,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="mt-3 text-center text-xs text-zinc-500">
+                <div className="mt-3 text-center text-xs text-muted">
                   Snap the teamsheet, auto-extract players, and start reporting.
                 </div>
               </div>
@@ -240,12 +235,13 @@ export default function Page() {
       <section id="features" className="mx-auto max-w-6xl px-5 pb-16">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-blue-600">Features</div>
+            <div className="text-sm font-extrabold text-brand">Features</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
               Built for pro scouting workflows
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600 md:text-base">
-              Keep matchday admin lightweight: capture the teamsheet, log the match, and file player notes in one flow.
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted md:text-base">
+              Keep matchday admin lightweight: capture the teamsheet, log the match,
+              and file player notes in one flow.
             </p>
           </div>
         </div>
@@ -282,11 +278,11 @@ export default function Page() {
       <section id="screens" className="mx-auto max-w-6xl px-5 pb-16">
         <div className="flex items-center justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-blue-600">Screens</div>
+            <div className="text-sm font-extrabold text-brand">Screens</div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
               A quick tour through the workflow
             </h2>
-            <p className="mt-2 text-sm leading-6 text-zinc-600 md:text-base">
+            <p className="mt-2 text-sm leading-6 text-muted md:text-base">
               Click through the core flow — teamsheet → extraction → reports → workspace.
             </p>
           </div>
@@ -294,13 +290,13 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <button
               onClick={prev}
-              className="rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50"
+              className="rounded-full border border-border bg-panel px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:bg-[#161616]"
             >
               ← Prev
             </button>
             <button
               onClick={next}
-              className="rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50"
+              className="rounded-full border border-border bg-panel px-4 py-2 text-sm font-semibold text-foreground shadow-sm hover:bg-[#161616]"
             >
               Next →
             </button>
@@ -309,14 +305,12 @@ export default function Page() {
 
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           {/* BIG PREVIEW */}
-          <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
-            <div className="text-xs font-medium text-zinc-500">
+          <div className="rounded-3xl border border-border bg-panel p-5 shadow-sm">
+            <div className="text-xs font-medium text-muted">
               Step {active + 1} / {shots.length}
             </div>
-            <div className="mt-1 text-2xl font-semibold text-zinc-900">
-              {current.title}
-            </div>
-            <div className="mt-2 text-sm text-zinc-600">{current.subtitle}</div>
+            <div className="mt-1 text-2xl font-semibold text-foreground">{current.title}</div>
+            <div className="mt-2 text-sm text-muted">{current.subtitle}</div>
 
             <div className="mt-5 flex items-center gap-2">
               {shots.map((_, i) => (
@@ -324,7 +318,7 @@ export default function Page() {
                   key={i}
                   onClick={() => setActive(i)}
                   className={`h-2 w-2 rounded-full transition ${
-                    i === active ? "bg-blue-600" : "bg-zinc-300 hover:bg-zinc-400"
+                    i === active ? "bg-brand" : "bg-[#3a3a3a] hover:bg-[#555]"
                   }`}
                   aria-label={`Go to ${shots[i].title}`}
                 />
@@ -332,7 +326,7 @@ export default function Page() {
             </div>
 
             <div className="mt-6 flex justify-center">
-              <div className="relative aspect-[9/19.5] w-full max-w-[320px] overflow-hidden rounded-[28px] border border-zinc-200 bg-zinc-50 shadow-sm">
+              <div className="relative aspect-[9/19.5] w-full max-w-[320px] overflow-hidden rounded-[28px] border border-border bg-black shadow-sm">
                 <Image
                   src={current.src}
                   alt={current.title}
@@ -345,7 +339,7 @@ export default function Page() {
           </div>
 
           {/* THUMB GRID */}
-          <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+          <div className="rounded-3xl border border-border bg-panel p-5 shadow-sm">
             <div className="grid grid-cols-3 gap-3">
               {shots.map((s, i) => (
                 <button
@@ -353,11 +347,11 @@ export default function Page() {
                   onClick={() => setActive(i)}
                   className={`rounded-2xl border p-3 text-left transition ${
                     i === active
-                      ? "border-blue-300 bg-blue-50"
-                      : "border-zinc-200 bg-white hover:bg-zinc-50"
+                      ? "border-brand bg-[#141414]"
+                      : "border-border bg-panel hover:bg-[#161616]"
                   }`}
                 >
-                  <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[110px] overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50">
+                  <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[110px] overflow-hidden rounded-xl border border-border bg-black">
                     <Image
                       src={s.src}
                       alt={s.title}
@@ -366,7 +360,7 @@ export default function Page() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="mt-2 text-xs font-semibold text-zinc-900">
+                  <div className="mt-2 text-xs font-semibold text-foreground">
                     {s.title}
                   </div>
                 </button>
@@ -375,14 +369,14 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mt-4 text-xs text-zinc-500">
+        <div className="mt-4 text-xs text-muted">
           Screens shown are from an internal pilot build.
         </div>
       </section>
 
       {/* FAQ + CTA */}
       <section id="faq" className="mx-auto max-w-6xl px-5 pb-16">
-        <div className="text-sm font-semibold text-blue-600">FAQ</div>
+        <div className="text-sm font-extrabold text-brand">FAQ</div>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
           Common questions
         </h2>
@@ -408,31 +402,29 @@ export default function Page() {
 
         <div
           id="contact"
-          className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm"
+          className="mt-8 rounded-3xl border border-border bg-panel p-6 shadow-sm"
         >
-          <div className="text-xl font-semibold">Book a quick demo</div>
-          <div className="mt-1 text-sm text-zinc-600">
+          <div className="text-xl font-semibold text-foreground">Book a quick demo</div>
+          <div className="mt-1 text-sm text-muted">
             Drop your email and we’ll set up a short call and share access to the pilot build.
           </div>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <input
-              className="h-12 w-full rounded-full border border-zinc-200 bg-white px-5 text-sm outline-none ring-blue-600/20 focus:ring-4"
+              className="h-12 w-full rounded-full border border-border bg-black px-5 text-sm text-foreground outline-none ring-brand/20 placeholder:text-[#6b7280] focus:ring-4"
               placeholder="Email address"
             />
-            <button className="h-12 rounded-full bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+            <button className="h-12 rounded-full bg-brand px-6 text-sm font-extrabold text-black shadow-sm transition hover:bg-brand-2">
               Get in touch
             </button>
           </div>
 
-          <div className="mt-2 text-xs text-zinc-500">
-            No spam — just pilot updates.
-          </div>
+          <div className="mt-2 text-xs text-muted">No spam — just pilot updates.</div>
         </div>
       </section>
 
-      <footer className="border-t border-zinc-200/70 bg-white/60">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-6 text-xs text-zinc-500">
+      <footer className="border-t border-border bg-background">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-6 text-xs text-muted">
           <div>© {new Date().getFullYear()} Scoutable</div>
           <div>Built for pro scouting workflows</div>
         </div>
