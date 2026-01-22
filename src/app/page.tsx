@@ -445,7 +445,7 @@ export default function Page() {
                   href="mailto:admin@scoutable.co.uk"
                   className="mt-2 block text-lg font-extrabold text-[var(--yellow)] hover:brightness-110"
                 >
-                  admin@scoutable.co.uk
+                  info@scoutable.co.uk
                 </a>
                 <div className="mt-1 text-xs text-[var(--muted)]">
                   We reply within 24–48 hours.
