@@ -55,6 +55,26 @@ const SHOTS: Shot[] = [
   // },
 ];
 
+const PRO_CHECKOUT_URL =
+  process.env.NEXT_PUBLIC_STRIPE_PRO_CHECKOUT_URL ||
+  "https://buy.stripe.com/00w00jdsM2NM2OVarvdfG00";
+
+const STARTER_FEATURES = [
+  "Basic reports",
+  "Limited AI usage",
+  "2 free scans per week",
+  "Basic exports",
+];
+
+const PRO_FEATURES = [
+  "Unlimited AI reports",
+  "Unlimited OCR scans",
+  "Audio-to-report",
+  "Advanced exports",
+  "Club workspace features",
+  "Priority updates",
+];
+
 function clampIndex(i: number, len: number) {
   if (len <= 0) return 0;
   return ((i % len) + len) % len;
@@ -156,6 +176,9 @@ export default function Page() {
             <a href="#screens" className="hover:text-white">
               Screens
             </a>
+            <a href="#pricing" className="hover:text-white">
+              Pricing
+            </a>
             <a href="#faq" className="hover:text-white">
               FAQ
             </a>
@@ -165,10 +188,10 @@ export default function Page() {
           </nav>
 
           <a
-            href="#contact"
+            href="#pricing"
             className="inline-flex items-center justify-center rounded-full bg-[var(--yellow)] px-4 py-2 text-sm font-extrabold text-black shadow-sm transition hover:brightness-110"
           >
-            Get in touch
+            View pricing
           </a>
         </div>
       </header>
@@ -201,10 +224,10 @@ export default function Page() {
                 See the app screens
               </a>
               <a
-                href="#contact"
+                href="#pricing"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--panel)] px-6 text-sm font-extrabold text-white transition hover:bg-[var(--panel-2)]"
               >
-                Book a pilot demo
+                View pricing
               </a>
             </div>
 
@@ -397,6 +420,93 @@ export default function Page() {
         </div>
       </section>
 
+      {/* PRICING */}
+      <section id="pricing" className="border-y border-[var(--line)] bg-black">
+        <div className="brand-container py-12 md:py-14">
+          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <SectionTitle
+              kicker="Pricing"
+              title="Start free. Upgrade when scouting gets busy."
+              subtitle="Starter gives enough room to try Scoutable properly. Pro unlocks the heavy matchday workflow."
+            />
+
+            <div className="rounded-full border border-[var(--line)] bg-[var(--panel)] px-4 py-2 text-xs font-extrabold text-[var(--yellow)]">
+              7-day Pro trial
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="text-2xl font-extrabold text-white">Starter</div>
+                  <div className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    For trying Scoutable and covering a few games each week.
+                  </div>
+                </div>
+                <div className="rounded-2xl bg-black/35 px-4 py-3 text-right">
+                  <div className="text-xl font-extrabold text-white">Free</div>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                {STARTER_FEATURES.map((feature) => (
+                  <div key={feature} className="flex gap-3 text-sm font-bold text-[var(--muted)]">
+                    <span className="text-[var(--yellow)]">✓</span>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-full border border-[var(--line)] bg-black/30 px-6 text-sm font-extrabold text-white transition hover:bg-[var(--panel-2)]"
+              >
+                Join the pilot
+              </a>
+            </div>
+
+            <div className="relative overflow-hidden rounded-3xl border border-[var(--yellow)] bg-[linear-gradient(135deg,rgba(246,196,0,0.18),rgba(255,255,255,0.08))] p-7 shadow-[0_24px_70px_rgba(246,196,0,0.14)]">
+              <div className="absolute right-5 top-5 rounded-full bg-[var(--yellow)] px-3 py-1 text-xs font-extrabold text-black">
+                Best for clubs
+              </div>
+
+              <div className="flex items-start justify-between gap-4 pr-20">
+                <div>
+                  <div className="text-2xl font-extrabold text-white">Pro</div>
+                  <div className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    Unlimited scanning, AI reports and workspace features.
+                  </div>
+                </div>
+                <div className="rounded-2xl bg-black/35 px-4 py-3 text-right">
+                  <div className="text-2xl font-extrabold text-white">£9.99</div>
+                  <div className="text-xs font-bold text-[var(--muted)]">per month</div>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                {PRO_FEATURES.map((feature) => (
+                  <div key={feature} className="flex gap-3 text-sm font-bold text-white">
+                    <span className="text-[var(--yellow)]">✓</span>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={PRO_CHECKOUT_URL}
+                className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-full bg-[var(--yellow)] px-6 text-sm font-extrabold text-black transition hover:brightness-110"
+              >
+                Start 7-day Pro trial
+              </a>
+              <div className="mt-3 text-center text-xs leading-5 text-[var(--muted)]">
+                Secure checkout via Stripe once your payment link is configured.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="bg-black">
         <div className="brand-container py-12 md:py-14">
@@ -408,20 +518,20 @@ export default function Page() {
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <FAQItem
-              q="Will scanned fixtures/reports persist for users?"
-              a="Yes — once the app is reading/writing Firestore per user (which your current ScoutContext + betaFirestore setup supports)."
+              q="Can I use Scoutable for free?"
+              a="Yes. Starter is free and includes basic reports, limited AI usage, 2 teamsheet scans per week, and basic exports."
             />
             <FAQItem
-              q="Can staff view reports without editing?"
-              a="Yes — you already support read-only behaviour for non-editors."
+              q="What do I get with Pro?"
+              a="Pro includes unlimited OCR scans, unlimited AI reports, audio-to-report, advanced exports, club workspace features, and priority updates."
             />
             <FAQItem
-              q="Do you support substitutes?"
-              a="Yes — subs are already wired through your OCR → Firestore → match log flow."
+              q="Does teamsheet scanning work every time?"
+              a="Teamsheet scans are designed to save time, but OCR can sometimes miss names or read details incorrectly. You can crop and retry, edit reports manually, and report scan issues for review."
             />
             <FAQItem
-              q="What’s needed for a pilot?"
-              a="A club workspace, a small user list, and agreed permissions (who can edit vs view)."
+              q="Can a whole club use one workspace?"
+              a="Yes. Scoutable is built around a shared club workspace so staff can keep match reports and player notes in one place."
             />
           </div>
         </div>
@@ -442,7 +552,7 @@ export default function Page() {
                   Email
                 </div>
                 <a
-                  href="mailto:admin@scoutable.co.uk"
+                  href="mailto:info@scoutable.co.uk"
                   className="mt-2 block text-lg font-extrabold text-[var(--yellow)] hover:brightness-110"
                 >
                   info@scoutable.co.uk
@@ -460,7 +570,7 @@ export default function Page() {
                   Want to trial Scoutable with your club?
                 </div>
                 <a
-                  href="mailto:admin@scoutable.co.uk?subject=Scoutable%20Pilot%20Request"
+                  href="mailto:info@scoutable.co.uk?subject=Scoutable%20Pilot%20Request"
                   className="mt-3 inline-flex items-center justify-center rounded-full bg-[var(--yellow)] px-5 py-2 text-sm font-extrabold text-black hover:brightness-110"
                 >
                   Request a pilot
